@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Корзина покупок в интернет-магазине TechNova.">
+  <title>Корзина – TechNova</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/catalog.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">TechNova</a>
+      <div class="site-header__controls">
+        <span class="counter-pill">♥ <span data-fav-count>0</span></span>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Включить тёмную тему">
+          <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav-list">
+          <span class="menu-toggle__icon" aria-hidden="true">☰</span>
+          <span class="visually-hidden">Открыть меню</span>
+        </button>
+      </div>
+      <nav class="site-nav" id="site-nav-list" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="cart.html" aria-current="page">Корзина (<span data-cart-count>0</span>)</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__current">Корзина</span>
+    </nav>
+
+    <section class="section">
+      <h1 class="section__title">Корзина</h1>
+
+      <div class="catalog-empty" data-cart-empty hidden>
+        <p>В корзине пока нет товаров.</p>
+        <a class="button button--primary" href="catalog.html">Перейти в каталог</a>
+      </div>
+
+      <div data-cart-content>
+        <div class="table-wrapper">
+          <table class="cart-table product-table">
+            <caption>Выбранные товары</caption>
+            <thead>
+              <tr>
+                <th scope="col">Товар</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Сумма</th>
+                <th scope="col">Действие</th>
+              </tr>
+            </thead>
+            <tbody data-cart-items></tbody>
+          </table>
+        </div>
+
+        <form class="filters-form catalog-filters" data-promo-form style="margin-top: var(--space-lg); max-width: 520px;">
+          <div class="filters-form__group">
+            <label class="order-form__label" for="promo-code">Промокод (доступны: TECHNOVA10, START5)</label>
+            <input class="order-form__input" id="promo-code" name="promo" type="text" placeholder="Введите промокод">
+          </div>
+          <button class="button button--secondary" type="submit">Применить промокод</button>
+          <p class="success-message" data-promo-message aria-live="polite" hidden></p>
+        </form>
+
+        <div class="catalog-filters" style="margin-top: var(--space-lg); max-width: 520px;">
+          <p>Промежуточная сумма: <strong data-cart-subtotal>0 руб.</strong></p>
+          <p>Скидка по промокоду: <strong data-cart-discount>0 руб.</strong></p>
+          <p style="margin-bottom: var(--space-md);">Итого: <strong data-cart-total>0 руб.</strong></p>
+          <div class="product-card__actions">
+            <a class="button button--primary" href="order.html">Оформить заявку</a>
+            <button class="button button--danger" type="button" data-clear-cart>Очистить корзину</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__text">&copy; 2026 TechNova. Все права защищены.</p>
+  </footer>
+  <a class="to-top" href="#" aria-label="Наверх">↑</a>
+</body>
+</html>

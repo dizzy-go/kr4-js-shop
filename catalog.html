@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Каталог электроники и гаджетов TechNova.">
+  <title>Каталог – TechNova</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/catalog.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">TechNova</a>
+      <div class="site-header__controls">
+        <span class="counter-pill">♥ <span data-fav-count>0</span></span>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Включить тёмную тему">
+          <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav-list">
+          <span class="menu-toggle__icon" aria-hidden="true">☰</span>
+          <span class="visually-hidden">Открыть меню</span>
+        </button>
+      </div>
+      <nav class="site-nav" id="site-nav-list" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="cart.html">Корзина (<span data-cart-count>0</span>)</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__current">Каталог</span>
+    </nav>
+
+    <section class="section">
+      <h1 class="section__title">Каталог товаров</h1>
+    </section>
+
+    <section class="catalog-layout">
+      <aside class="catalog-filters">
+        <h2 class="catalog-filters__title">Фильтры</h2>
+        <form class="filters-form" id="filters-form" action="#" method="get">
+          <fieldset class="filters-form__group">
+            <legend class="filters-form__legend">Поиск по названию</legend>
+            <label class="visually-hidden" for="catalog-search">Поиск товара</label>
+            <input class="filters-form__input" id="catalog-search" name="search" type="search" placeholder="Например: SonicWave" autocomplete="off">
+          </fieldset>
+
+          <fieldset class="filters-form__group">
+            <legend class="filters-form__legend">Категория</legend>
+            <label class="filters-form__label"><input class="filters-form__checkbox" type="checkbox" name="category" value="audio"> Аудио</label>
+            <label class="filters-form__label"><input class="filters-form__checkbox" type="checkbox" name="category" value="wearables"> Носимые устройства</label>
+            <label class="filters-form__label"><input class="filters-form__checkbox" type="checkbox" name="category" value="accessories"> Аксессуары</label>
+          </fieldset>
+
+          <fieldset class="filters-form__group">
+            <legend class="filters-form__legend">Цена, руб.</legend>
+            <label class="filters-form__label" for="price-from">От</label>
+            <input class="filters-form__input" id="price-from" name="price-from" type="number" min="0" placeholder="0">
+            <label class="filters-form__label" for="price-to">До</label>
+            <input class="filters-form__input" id="price-to" name="price-to" type="number" min="0" placeholder="20000">
+          </fieldset>
+
+          <button class="button button--primary" type="submit">Применить</button>
+        </form>
+      </aside>
+
+      <section class="catalog-products">
+        <div class="catalog-toolbar">
+          <h2 class="catalog-products__title">Все товары</h2>
+          <label class="visually-hidden" for="sort-select">Сортировка товаров</label>
+          <select class="filters-form__input" id="sort-select" style="width: auto;">
+            <option value="default">Сортировка: по умолчанию</option>
+            <option value="price-asc">Цена: по возрастанию</option>
+            <option value="price-desc">Цена: по убыванию</option>
+            <option value="title-asc">Название: А–Я</option>
+            <option value="rating-desc">Рейтинг: высокий</option>
+          </select>
+        </div>
+
+        <p class="catalog-count" data-catalog-count aria-live="polite">Найдено товаров: 0</p>
+
+        <div class="catalog-empty" data-catalog-empty hidden>
+          <p>По выбранным фильтрам или запросу товары не найдены.</p>
+          <button class="button button--secondary" type="button" data-reset-filters>Сбросить фильтры</button>
+        </div>
+
+        <div class="products-grid" data-products-container></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__text">&copy; 2026 TechNova. Все права защищены.</p>
+  </footer>
+  <a class="to-top" href="#" aria-label="Наверх">↑</a>
+
+  <dialog class="modal" id="quick-view-modal" aria-labelledby="modal-title">
+    <h2 id="modal-title" class="modal__title">Товар</h2>
+    <p id="modal-desc" class="modal__desc">Описание</p>
+    <button class="button button--primary modal__close" id="modal-close" type="button">Закрыть</button>
+  </dialog>
+</body>
+</html>
